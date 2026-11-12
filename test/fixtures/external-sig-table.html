@@ -1,0 +1,244 @@
+<div class="WordSection1">
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">¡Hola!</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">"expectedPartnerId" se recibe como un campo adicional y no reemplaza directamente el valor de partnerId en el cuerpo de la solicitud.</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">Cuando este campo está informado, buscamos en la cuenta global del usuario la suscripción cuyo partnerCustomerId coincida con el valor recibido. Si encontramos una coincidencia, utilizamos los datos
+ de esa suscripción para actualizar los siguientes campos de la respuesta:</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">- partnerId</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">- accountId</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">- businessUnitType</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">- ...</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">El cvk y el serviceProviderAccountId también se calculan utilizando el nuevo partnerId, de modo que la identidad de la sesión quede alineada con la suscripción seleccionada.</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">Los posibles escenarios son:</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">- Suscripción encontrada: actualizamos los campos indicados con los datos de la suscripción correspondiente.</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span lang="EN-US" style="mso-fareast-language:EN-US">- Suscripción no encontrada en la cuenta global: devolvemos un 401 con el mensaje: "expectedPartnerId not found in user global account".</span></div>
+<div class="MsoNormal"><span lang="EN-US" style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">- Mismo partnerId que el original: no se produce ningún cambio efectivo en la identidad.</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">- Campo no informado: se mantiene el comportamiento actual, sin cambios.</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">Aclaración sobre el nombre del campo: actualmente, el BFF espera el nombre "expectPartnerId", sin la terminación "ed".</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">Podemos ajustarlo para utilizar "expectedPartnerId", pero necesitamos confirmar con ustedes cuál será el nombre definitivo para garantizar que ambas partes estén alineadas.<br>
+<br>
+Quedamos a su disposición para cualquier consulta</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US">¡Gracias!</span></div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div>
+<div>
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" style="max-width:1080.0pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td width="120" style="width:90.0pt;padding:0cm 0cm 0cm 0cm">
+<div class="MsoNormal" align="center" style="text-align:center">
+<span style="font-family:Poppins;color:black"><img width="120" height="120" style="width:1.25in;height:1.25in" id="_x0000_i1032" src="https://img.example/assets/logo/black.png" alt="Acmelabs Logo"></span><span style="color:black"></span>
+</div>
+</td>
+<td width="0" style="width:.3pt;padding:0cm 0cm 0cm 0cm">
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="24" style="width:18.1pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td style="padding:0cm 0cm 0cm 0cm">
+<div align="center">
+<table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" width="15" style="width:11.25pt;border-collapse:collapse;border:none">
+<tbody>
+<tr style="height:60.0pt">
+<td width="2" style="width:1.5pt;border:none;border-right:solid windowtext 1.5pt;padding:0cm 0cm 0cm 0cm;height:60.0pt">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign="top" style="padding:0cm 7.5pt 0cm 7.5pt">
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" width="656" style="width:491.9pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td width="656" valign="top" style="width:491.9pt;padding:0cm 0cm 0cm 0cm">
+<div class="MsoNormal">
+<b><span style="font-size:10.5pt;font-family:Poppins;color:black">João Pedro de Almeida Moreira </span></b><b><span style="font-size:10.5pt;font-family:Poppins;color:black"></span></b>
+</div>
+<div class="MsoNormal" style="margin-bottom:3.0pt"><span style="font-size:9.0pt;font-family:Poppins;color:#666666">LIDER PROJETOS </span></div>
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
+<tbody>
+<tr style="height:2.25pt">
+<td width="60" style="width:45.0pt;background:darkturquoise;padding:0cm 0cm 0cm 0cm;height:2.25pt">
+</td>
+</tr>
+</tbody>
+</table>
+<div class="MsoNormal"><span style="display:none"> </span></div>
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" style="max-width:345.0pt;border-collapse:collapse">
+<tbody>
+<tr>
+<td valign="top" style="padding:0cm 0cm 0cm 0cm">
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
+<tbody>
+<tr>
+<td valign="top" style="padding:.75pt 6.0pt 0cm 0cm">
+<div class="MsoNormal" style="line-height:12.0pt"><span style="font-size:9.0pt;font-family:Poppins;color:black"><img width="16" height="16" style="width:.1666in;height:.1666in" id="_x0000_i1031" src="https://img.example/assets/icons/mail.png" alt="Email"></span></div>
+</td>
+<td valign="top" style="padding:0cm 0cm 0cm 0cm">
+<div class="MsoNormal" style="line-height:12.0pt"><span style="font-size:9.0pt;font-family:Poppins;color:black"><a href="mailto:joao.moreira@acmelabs.example" rel="noreferrer"><span style="color:black;text-decoration:none">joao.moreira@acmelabs.example </span></a></span></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td valign="top" style="padding:0cm 0cm 0cm 0cm">
+<div align="right">
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
+<tbody>
+<tr>
+<td valign="top" style="padding:.75pt 6.0pt 0cm 0cm">
+<div class="MsoNormal" align="right" style="text-align:right;line-height:12.0pt"><span style="font-size:9.0pt;font-family:Poppins;color:black"><img width="16" height="16" style="width:.1666in;height:.1666in" id="_x0000_i1030" src="https://img.example/assets/icons/site.png" alt="Site"></span></div>
+</td>
+<td valign="top" style="padding:0cm 0cm 0cm 0cm">
+<div class="MsoNormal" align="right" style="text-align:right;line-height:12.0pt"><span style="font-size:9.0pt;font-family:Poppins;color:black"><a href="https://acmelabs.example/" rel="noreferrer"><span style="color:black;text-decoration:none">acmelabs.example </span></a></span></div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="MsoNormal"><span style="display:none"> </span></div>
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
+<tbody>
+<tr>
+<td valign="top" style="padding:0cm 7.5pt 0cm 0cm">
+<div class="MsoNormal" style="margin-bottom:3.0pt"><span style="font-family:Poppins;color:black"><img width="16" height="16" style="width:.1666in;height:.1666in" id="_x0000_i1029" src="https://img.example/assets/icons/loc.png" alt="Location"></span></div>
+</td>
+<td valign="top" style="padding:0cm 0cm 0cm 0cm">
+<div class="MsoNormal" style="margin-bottom:3.0pt">
+<span style="font-size:9.0pt;font-family:Poppins;color:black">Avenida Exemplo, 100, Torre I – 11º andar, Cidade Exemplo/SP </span><span style="font-size:9.0pt;font-family:Poppins;color:black"></span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="MsoNormal"><span style="display:none"> </span></div>
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
+<tbody>
+<tr>
+<td style="padding:0cm 11.25pt 0cm 0cm">
+<table class="MsoNormalTable" border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse">
+<tbody>
+<tr style="height:2.25pt">
+<td width="60" style="width:45.0pt;background:darkturquoise;padding:0cm 0cm 0cm 0cm;height:2.25pt">
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style="padding:0cm 7.5pt 0cm 0cm">
+<div class="MsoNormal"><a href="https://social.example/acmelabs" rel="noreferrer"><span style="font-family:Poppins;text-decoration:none"><img width="20" height="20" style="width:.2083in;height:.2083in" id="_x0000_i1028" src="https://img.example/assets/icons/linkedin.png" alt="LinkedIn"></span></a></div>
+</td>
+<td style="padding:0cm 0cm 0cm 0cm">
+<div class="MsoNormal"><a href="https://photos.example/acmelabs" rel="noreferrer"><span style="font-family:Poppins;text-decoration:none"><img width="20" height="20" style="width:.2083in;height:.2083in" id="_x0000_i1027" src="https://img.example/assets/icons/instagram.png" alt="Instagram"></span></a></div>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="MsoNormal"><span style="mso-fareast-language:EN-US"> </span></div>
+<div>
+<div style="border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm 0cm 0cm">
+<div class="MsoNormal">
+<b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'>De:</span></b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif'> Beatriz Pereira &lt;beatriz.pereira@ext.paytv-br.example&gt;
+<br>
+<b>Enviada em:</b> terça-feira, 27 de outubro de 2026 15:48<br>
+<b>Para:</b> Andrés Molina &lt;andres.molina@paytv-tlc.example&gt;; Martín Ferreyra &lt;integrations@northwind.example&gt;; Paulo Henrique Da Costa Reis &lt;paulo.reis@ext.paytv-br.example&gt;; Rafael Torres Faria &lt;rafael.faria@ext.paytv-br.example&gt;<br>
+<b>Cc:</b> cparedes@northwind.example; user01@paytv-br.example; Teixeira, Marcos A. &lt;marcos.teixeira@consultco.example&gt;; Caio Augusto Lins Prado &lt;caio.prado@ext.paytv-br.example&gt;; mferreyra@northwind.example; lbenitez@northwind.example; Igor Santana Brito De Paula &lt;igor.paula@ext.paytv-br.example&gt;; Hugo Andrés Cardona &lt;hugcar@paytv-co.example&gt;; Bruno Leal Fontes Duarte &lt;bruno.duarte@ext.paytv-br.example&gt;; Sergio Campos De Abreu &lt;sergio.abreu@ext.paytv-br.example&gt;; Ivan Rocha &lt;ivan.rocha@ext.paytv-br.example&gt;;
+ Kenji Tanaka Ota &lt;kenji.ota@ext.paytv-br.example&gt;; Luis Fernando Pires De Souza &lt;luis.pires@ext.paytv-br.example&gt;; Ana Luz &lt;ana.luz@ext.paytv-br.example&gt;; parrieta@northwind.example; Moraes, Davi &lt;davi.moraes@consultco.example&gt;; Davi Moraes
+Dos Reis &lt;davi.reis@ext.paytv-br.example&gt;; Juan Ignacio Ferro &lt;jferro@paytv-ar.example&gt;; esorribas@northwind.example; user02@ext.paytv-br.example; Lucas Okada Ramos Da Costa &lt;lucas.okada@paytv-br.example&gt;; Felipe Nunes Prado &lt;felipe.prado@ext.paytv-br.example&gt;;
+ Mario Bentancor Cruz &lt;mario.cruz@ext.paytv-br.example&gt;; Thiago Augusto Melo Neves &lt;thiago.neves@paytv-br.example&gt;; Vitor Assis Lopes &lt;vitor.lopes@ext.paytv-br.example&gt;; João Moreira &lt;joao.moreira@ext.paytv-br.example&gt;; Marcelo Jorge Alves
+ Santana &lt;marcelo.santana@ext.paytv-br.example&gt;; Andrés Molina &lt;andres.molina@paytv-tlc.example&gt;<br>
+<b>Assunto:</b> RE: RE: RE: Login SSO - NWD</span>
+</div>
+</div>
+</div>
+<div class="MsoNormal"> </div>
+<div class="MsoNormal"><span style="color:black">+<a id="OWAAM298658" href="mailto:paulo.reis@ext.paytv-br.example" rel="noreferrer"><span style='font-family:"Aptos",sans-serif;text-decoration:none'>@Paulo Henrique Da Costa Reis</span></a></span></div>
+<div class="MsoNormal"><span style="color:black">+<a id="OWAAM172112" href="mailto:rafael.faria@ext.paytv-br.example" rel="noreferrer"><span style='font-family:"Aptos",sans-serif;text-decoration:none'>@Rafael Torres Faria</span></a></span></div>
+<div class="MsoNormal"><span style="color:black"> </span></div>
+<div class="MsoNormal"><span style="color:black">Poderiam ajudar com esse ponto?</span></div>
+<div class="MsoNormal"><span style="color:black"> </span></div>
+<div class="MsoNormal" align="center" style="text-align:center">
+<hr align="center">
+</div>
+<div id="divRplyFwdMsg">
+<div class="MsoNormal">
+<b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;color:black'>De:</span></b><span style='font-size:11.0pt;font-family:"Calibri",sans-serif;color:black'> Martín Ferreyra &lt;<a href="mailto:integrations@northwind.example" rel="noreferrer">integrations@northwind.example</a>&gt;<br>
+<b>Enviado:</b> terça-feira, 27 de outubro de 2026 11:38<br>
+<b>Para:</b> Andrés Molina &lt;<a href="mailto:andres.molina@paytv-tlc.example" rel="noreferrer">andres.molina@paytv-tlc.example</a>&gt;<br>
+<b>Cc:</b> <a href="mailto:cparedes@northwind.example" rel="noreferrer">cparedes@northwind.example</a> &lt;<a href="mailto:cparedes@northwind.example" rel="noreferrer">cparedes@northwind.example</a>&gt;; Beatriz Pereira &lt;<a href="mailto:beatriz.pereira@ext.paytv-br.example" rel="noreferrer">beatriz.pereira@ext.paytv-br.example</a>&gt;;
+<a href="mailto:user01@paytv-br.example" rel="noreferrer">user01@paytv-br.example</a> &lt;<a href="mailto:user01@paytv-br.example" rel="noreferrer">user01@paytv-br.example</a>&gt;; Teixeira, Marcos A. &lt;<a href="mailto:marcos.teixeira@consultco.example" rel="noreferrer">marcos.teixeira@consultco.example</a>&gt;;
+ Paulo Henrique Da Costa Reis &lt;<a href="mailto:paulo.reis@ext.paytv-br.example" rel="noreferrer">paulo.reis@ext.paytv-br.example</a>&gt;; Caio Augusto Lins Prado &lt;<a href="mailto:caio.prado@ext.paytv-br.example" rel="noreferrer">caio.prado@ext.paytv-br.example</a>&gt;;
+<a href="mailto:mferreyra@northwind.example" rel="noreferrer">mferreyra@northwind.example</a> &lt;<a href="mailto:mferreyra@northwind.example" rel="noreferrer">mferreyra@northwind.example</a>&gt;;
+<a href="mailto:lbenitez@northwind.example" rel="noreferrer">lbenitez@northwind.example</a> &lt;<a href="mailto:lbenitez@northwind.example" rel="noreferrer">lbenitez@northwind.example</a>&gt;; Igor Santana Brito De Paula &lt;<a href="mailto:igor.paula@ext.paytv-br.example" rel="noreferrer">igor.paula@ext.paytv-br.example</a>&gt;;
+ Hugo Andrés Cardona &lt;<a href="mailto:hugcar@paytv-co.example" rel="noreferrer">hugcar@paytv-co.example</a>&gt;; Bruno Leal Fontes Duarte &lt;<a href="mailto:bruno.duarte@ext.paytv-br.example" rel="noreferrer">bruno.duarte@ext.paytv-br.example</a>&gt;; Sergio Campos De Abreu &lt;<a href="mailto:sergio.abreu@ext.paytv-br.example" rel="noreferrer">sergio.abreu@ext.paytv-br.example</a>&gt;;
+ Ivan Rocha &lt;<a href="mailto:ivan.rocha@ext.paytv-br.example" rel="noreferrer">ivan.rocha@ext.paytv-br.example</a>&gt;; Kenji Tanaka Ota &lt;<a href="mailto:kenji.ota@ext.paytv-br.example" rel="noreferrer">kenji.ota@ext.paytv-br.example</a>&gt;; Luis Fernando Pires De Souza &lt;<a href="mailto:luis.pires@ext.paytv-br.example" rel="noreferrer">luis.pires@ext.paytv-br.example</a>&gt;;
+ Ana Luz &lt;<a href="mailto:ana.luz@ext.paytv-br.example" rel="noreferrer">ana.luz@ext.paytv-br.example</a>&gt;;
+<a href="mailto:parrieta@northwind.example" rel="noreferrer">parrieta@northwind.example</a> &lt;<a href="mailto:parrieta@northwind.example" rel="noreferrer">parrieta@northwind.example</a>&gt;; Moraes, Davi &lt;<a href="mailto:davi.moraes@consultco.example" rel="noreferrer">davi.moraes@consultco.example</a>&gt;; Davi Moraes Dos Reis
+ &lt;<a href="mailto:davi.reis@ext.paytv-br.example" rel="noreferrer">davi.reis@ext.paytv-br.example</a>&gt;; Juan Ignacio Ferro &lt;<a href="mailto:jferro@paytv-ar.example" rel="noreferrer">jferro@paytv-ar.example</a>&gt;;
+<a href="mailto:esorribas@northwind.example" rel="noreferrer">esorribas@northwind.example</a> &lt;<a href="mailto:esorribas@northwind.example" rel="noreferrer">esorribas@northwind.example</a>&gt;;
+<a href="mailto:user02@ext.paytv-br.example" rel="noreferrer">user02@ext.paytv-br.example</a> &lt;<a href="mailto:user02@ext.paytv-br.example" rel="noreferrer">user02@ext.paytv-br.example</a>&gt;; Lucas Okada Ramos Da Costa &lt;<a href="mailto:lucas.okada@paytv-br.example" rel="noreferrer">lucas.okada@paytv-br.example</a>&gt;;
+ Felipe Nunes Prado &lt;<a href="mailto:felipe.prado@ext.paytv-br.example" rel="noreferrer">felipe.prado@ext.paytv-br.example</a>&gt;; Mario Bentancor Cruz &lt;<a href="mailto:mario.cruz@ext.paytv-br.example" rel="noreferrer">mario.cruz@ext.paytv-br.example</a>&gt;; Thiago Augusto Melo Neves &lt;<a href="mailto:thiago.neves@paytv-br.example" rel="noreferrer">thiago.neves@paytv-br.example</a>&gt;; Vitor Assis Lopes &lt;<a href="mailto:vitor.lopes@ext.paytv-br.example" rel="noreferrer">vitor.lopes@ext.paytv-br.example</a>&gt;; João Moreira &lt;<a href="mailto:joao.moreira@ext.paytv-br.example" rel="noreferrer">joao.moreira@ext.paytv-br.example</a>&gt;;
+ Rafael Torres Faria &lt;<a href="mailto:rafael.faria@ext.paytv-br.example" rel="noreferrer">rafael.faria@ext.paytv-br.example</a>&gt;; Marcelo Jorge Alves Santana &lt;<a href="mailto:marcelo.santana@ext.paytv-br.example" rel="noreferrer">marcelo.santana@ext.paytv-br.example</a>&gt;<br>
+<b>Assunto:</b> Re: RE: RE: Login SSO - NWD</span>
+</div>
+<div class="MsoNormal"> </div>
+</div>
+<div class="MsoNormal"><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'>Hola Andrés y Beatriz! Espero que estén de lo mejor!</span></div>
+<div class="MsoNormal"><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'> </span></div>
+<div class="MsoNormal"><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'>Les transmito un pequeña duda de nuestro equipo de producto sobre el requerimiento de multicuentas/multiSSO que estamos desarrollando:</span></div>
+<div class="MsoNormal"><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'>En el canje reenviamos
+<b>expectedPartnerId</b> al login del Gateway. Hoy el body hacia la API del partner manda
+<b>partnerId</b> con el <b>externalId</b> del subscriber. ¿<b>expectedPartnerId</b> reemplazaría ese
+<b>partnerId</b>  si nos llega o entra como un campo aparte?</span></div>
+<div class="MsoNormal"><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'> </span></div>
+<div class="MsoNormal"><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'>Desde ya, muchas gracias.</span></div>
+<div class="MsoNormal"><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'>Saludos!</span></div>
+<div class="MsoNormal">
+<b><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'>Martín Ferreyra</span></b><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'></span>
+</div>
+<div class="MsoNormal"><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'>Partner Onboarding Specialist</span></div>
+<div class="MsoNormal"><span style='font-size:10.5pt;font-family:"Segoe UI",sans-serif'>Mail:
+<a href="mailto:integrations@northwind.example" rel="noreferrer">integrations@northwind.example</a></span></div>
+<div class="MsoNormal">
+<span style='font-size:11.5pt;font-family:"Arial",sans-serif;color:#1F497D'><img width="110" height="22" style="width:1.15in;height:.225in" id="_x0000_i1026" src="https://img.example/inline/attachment?token=demo-token"></span><span style='font-size:11.5pt;font-family:"Arial",sans-serif;color:#1F497D'></span>
+</div>
+<div class="MsoNormal">
+<span style='font-size:9.0pt;font-family:"Arial",sans-serif'>Avenida Ejemplo 1234, Torre Norte Piso 7 Dto. 704</span><span style='font-size:11.5pt;font-family:"Arial",sans-serif'> </span><span style='font-size:9.0pt;font-family:"Arial",sans-serif'>10000
+ - Ciudad Ejemplo, Uruguay </span><span style='font-size:11.5pt;font-family:"Arial",sans-serif'> </span><span style='font-family:"Arial",sans-serif'></span>
+</div>
+<div class="MsoNormal">
+<b><span style='font-size:9.0pt;font-family:"Arial",sans-serif;color:#2C5CC5'><a href="http://www.northwind.example/" rel="noreferrer"><span style="color:#2C5CC5">www.northwind.example
+ [northwind.example]</span></a></span></b><span style='font-size:9.0pt;font-family:"Arial",sans-serif;color:#2C5CC5'></span>
+</div>
+<div class="MsoNormal"><span style='font-size:1.0pt;font-family:"fdtktid",serif;color:white'>100100:9999999</span></div>
+</div>
