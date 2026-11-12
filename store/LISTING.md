@@ -124,5 +124,5 @@ Las capturas 1 a 3 se tomaron dentro de Freshdesk real, con una conversación fi
 - [x] Capturas de 1280×800: ver arriba.
 - [ ] Ícono de la tienda de 128×128: ya está en `icons/icon128.png`.
 - [ ] Opcional: imagen promocional chica de 440×280.
-- [x] Email de contacto en la política (santiagocaprile7@gmail.com).
+- [x] Email de contacto en la política (extension@santiagocaprile.com).
 - [ ] Publicar `privacy.html` en una URL pública.

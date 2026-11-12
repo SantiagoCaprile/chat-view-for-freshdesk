@@ -1,6 +1,6 @@
 # Chat View for Freshdesk — Privacy Policy / Política de privacidad
 
-_Last updated / Última actualización: 2026-11-03 (v1.2)_
+_Last updated / Última actualización: 2026-11-11 (v1.3)_
 
 ## English
 
@@ -30,7 +30,7 @@ _Last updated / Última actualización: 2026-11-03 (v1.2)_
 
 **Changes and contact**
 - If this policy changes, the new version will be published at this same address with a new date.
-- Questions: santiagocaprile7@gmail.com
+- Questions: extension@santiagocaprile.com
 
 ## Español
 
@@ -60,7 +60,7 @@ _Last updated / Última actualización: 2026-11-03 (v1.2)_
 
 **Cambios y contacto**
 - Si esta política cambia, la nueva versión se publica en esta misma dirección con fecha nueva.
-- Consultas: santiagocaprile7@gmail.com
+- Consultas: extension@santiagocaprile.com
 
 ---
 _Chat View for Freshdesk is an independent project and is not affiliated with, endorsed or sponsored by Freshworks Inc. "Freshdesk" is a trademark of Freshworks Inc._
