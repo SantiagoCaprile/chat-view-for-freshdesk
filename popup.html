@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Chat View for Freshdesk</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/icon32.png" width="20" height="20" alt="">
+    <h1>Chat View for Freshdesk</h1>
+  </header>
+
+  <section id="viewMain">
+  <label class="row">
+    <span class="txt">
+      <strong data-i18n="pChat">Modo chat</strong>
+      <small data-i18n="pChatSub">Muestra los tickets como conversación</small>
+    </span>
+    <input type="checkbox" id="enabled" role="switch">
+    <span class="sw" aria-hidden="true"></span>
+  </label>
+
+  <label class="row">
+    <span class="txt">
+      <strong data-i18n="pSigs">Mostrar firmas</strong>
+      <small data-i18n="pSigsSub">Firmas completas en vez de "· · ·"</small>
+    </span>
+    <input type="checkbox" id="sigs" role="switch">
+    <span class="sw" aria-hidden="true"></span>
+  </label>
+  <p class="warn" id="sigsWarn" data-i18n="pSigsWarn" role="note">La detección de firmas es automática y puede ocultar texto por error. Si te parece que falta algo, tocá "· · ·" en el mensaje o activá esta opción.</p>
+
+  <label class="row">
+    <span class="txt">
+      <strong data-i18n="pButton">Botón 💬 en la página</strong>
+      <small data-i18n="pButtonSub">Botón flotante para prender/apagar el chat</small>
+    </span>
+    <input type="checkbox" id="button" role="switch">
+    <span class="sw" aria-hidden="true"></span>
+  </label>
+
+  <button type="button" class="row row-nav" id="openSettings">
+    <span class="txt">
+      <strong>⚙ <span data-i18n="pSettings">Ajustes</span></strong>
+      <small data-i18n="pSettingsSub">Idioma, orden, dominios internos y animaciones</small>
+    </span>
+    <span class="chev" aria-hidden="true">›</span>
+  </button>
+  </section>
+
+  <section id="viewSettings" hidden>
+  <button type="button" class="back" id="closeSettings">‹ <span data-i18n="pBack">Volver</span></button>
+  <h2 data-i18n="pSettings">Ajustes</h2>
+
+  <label class="row">
+    <span class="txt">
+      <strong data-i18n="pNewest">Más nuevos arriba</strong>
+      <small data-i18n="pNewestSub">Invierte el chat: lo último arriba y lo más viejo abajo</small>
+    </span>
+    <input type="checkbox" id="newest" role="switch">
+    <span class="sw" aria-hidden="true"></span>
+  </label>
+
+  <label class="row">
+    <span class="txt">
+      <strong data-i18n="pNoAnim">Quitar animaciones</strong>
+      <small data-i18n="pNoAnimSub">Más liviano en equipos con pocos recursos</small>
+    </span>
+    <input type="checkbox" id="noanim" role="switch">
+    <span class="sw" aria-hidden="true"></span>
+  </label>
+
+  <div class="row row-field">
+    <label class="txt" for="domains">
+      <strong data-i18n="pDomains">Dominios internos</strong>
+      <small data-i18n="pDomainsSub">Mensajes de estos dominios van a la derecha aunque no sean agentes. Separados por coma.</small>
+    </label>
+    <div class="field">
+      <input type="text" id="domains" spellcheck="false" autocomplete="off" data-i18n-ph="pDomainsPh" placeholder="ej: miempresa.com">
+      <span class="saved" id="saved" data-i18n="pSaved" hidden>Guardado</span>
+    </div>
+  </div>
+
+  <label class="row row-select">
+    <span class="txt"><strong data-i18n="pLang">Idioma</strong></span>
+    <select id="lang">
+      <option value="auto" id="langAuto">Automático</option>
+      <option value="es">Español</option>
+      <option value="en">English</option>
+    </select>
+  </label>
+
+  </section>
+
+  <footer data-i18n="pReadOnly">Solo lectura: no modifica nada en Freshdesk.</footer>
+  <script src="i18n.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
