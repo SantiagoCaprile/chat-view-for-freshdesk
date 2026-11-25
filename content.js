@@ -162,6 +162,13 @@
       return !!d && domains.some(x => d === x || d.endsWith('.' + x));
     };
 
+    const supportMails = new Set([ticket.support_email].filter(Boolean).map(parseMail));
+    // Destinatarios que no son agentes, ni dominio interno, ni el mail de soporte del ticket.
+    const externalRecipients = c => {
+      const all = [].concat(c.to_emails || [], c.cc_emails || [], c.bcc_emails || []).map(parseMail).filter(Boolean);
+      return [...new Set(all)].filter(m => !byEmail.has(m) && !isInternal(m) && !supportMails.has(m) && m !== parseMail(c.support_email));
+    };
+
     const first = ticket.description_html || ticket.description || '';
     let reqAgentId = isAgent(reqId) ? reqId : (byEmail.has(parseMail(req.email)) ? String(byEmail.get(parseMail(req.email))) : null);
     const reqIsAgent = reqAgentId != null;
@@ -180,7 +187,22 @@
         if (viaMail != null) uid = String(viaMail);
       }
       const agent = isAgent(uid);
-      let side = c.private ? 'note' : ((c.incoming && !agent && !isInternal(c.from_email)) ? 'left' : 'right');
+      // Nota privada "real" (creada en FD): private && !incoming, solo notifica agentes.
+      // Mail de un agente enviado por fuera de FD (Outlook/Gmail) con clientes en To/CC: FD lo
+      // guarda como private+incoming, pero el cliente lo recibio -> se muestra como publico.
+      const external = c.private && c.incoming ? externalRecipients(c) : [];
+      const leaked = external.length > 0;
+      const isNote = c.source === 2;
+      let side = (c.private && !leaked) ? 'note' : ((c.incoming && !agent && !isInternal(c.from_email)) ? 'left' : 'right');
+      let tag = null;
+      // Una sola etiqueta para el cliente: FD guarda estos mails a veces como nota publica y a
+      // veces como privada, pero en ambos casos le llegaron al cliente.
+      if (leaked || (isNote && !c.private)) {
+        const to = leaked ? external : externalRecipients(c);
+        const list = k => [...new Set((c[k] || []).map(parseMail).filter(Boolean))];
+        tag = { text: T('publicNote'), title: to.length ? T('publicNoteTo', { list: to.join(', ') }) : T('publicNoteTitle'),
+          recipients: { to: list('to_emails'), cc: list('cc_emails'), bcc: list('bcc_emails') } };
+      }
       let name, email;
       if (agent) { name = agentName(uid); email = agentMail(uid); }
       else if (uid && uid === reqId) { name = req.name || ''; email = req.email || c.from_email || ''; }
@@ -189,7 +211,7 @@
       msgs.push({
         id: String(c.id), side, name, email,
         mine: agent && meId != null && uid === meId,
-        time: c.created_at, html: c.body_html || c.body || '', attachments: c.attachments || [],
+        time: c.created_at, html: c.body_html || c.body || '', attachments: c.attachments || [], tag,
       });
     });
     return msgs;
@@ -551,7 +573,30 @@
 
     const who = el('div', 'fdcv-who', (m.side === 'note' ? '🔒 ' : '') + m.name + (m.mine ? ' ' + T('me') : ''));
     if (m.email) who.appendChild(el('span', 'fdcv-email', m.email));
+    let recBox = null;
+    if (m.tag) {
+      const r = m.tag.recipients;
+      const hasRec = r && (r.to.length || r.cc.length || r.bcc.length);
+      const tg = el(hasRec ? 'button' : 'span', 'fdcv-tag', m.tag.text + (hasRec ? ' ▾' : ''));
+      if (m.tag.title) tg.title = m.tag.title;
+      if (hasRec) {
+        tg.type = 'button';
+        recBox = el('div', 'fdcv-recipients'); recBox.hidden = true;
+        [['to', T('recTo')], ['cc', 'CC'], ['bcc', 'BCC']].forEach(([k, label]) => {
+          if (!r[k].length) return;
+          const line = el('div', 'fdcv-rec-line');
+          line.append(el('strong', '', label + ': '), document.createTextNode(r[k].join(', ')));
+          recBox.appendChild(line);
+        });
+        tg.addEventListener('click', () => {
+          recBox.hidden = !recBox.hidden;
+          tg.textContent = m.tag.text + (recBox.hidden ? ' ▾' : ' ▴');
+        });
+      }
+      who.appendChild(tg);
+    }
     b.appendChild(who);
+    if (recBox) b.appendChild(recBox);
 
     const body = el('div', 'fdcv-body');
     body.innerHTML = res.cleanHtml || '';

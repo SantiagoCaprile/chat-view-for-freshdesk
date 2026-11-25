@@ -84,6 +84,10 @@
 .fdcv-note .fdcv-bubble { background: var(--fdcv-note); border: 1px solid var(--fdcv-note-border); max-width: 80%; }
 .fdcv-who { font-size: 12px; font-weight: 600; margin-bottom: 2px; }
 .fdcv-email { font-weight: 400; color: var(--fdcv-muted); margin-left: 6px; }
+.fdcv-tag { display: inline-block; font-weight: 500; font-size: 10px; padding: 0 6px; margin-left: 6px; border-radius: 8px; border: 1px solid var(--fdcv-note-border); color: var(--fdcv-text); background: var(--fdcv-note); vertical-align: 1px; cursor: help; font-family: inherit; line-height: 16px; }
+button.fdcv-tag { cursor: pointer; }
+.fdcv-recipients { font-size: 11px; color: var(--fdcv-muted); margin: 2px 0 6px; padding: 4px 8px; border-left: 2px solid var(--fdcv-note-border); max-height: 7.5em; overflow-y: auto; word-break: break-word; }
+.fdcv-rec-line + .fdcv-rec-line { margin-top: 2px; }
 .fdcv-body { font-size: 14px; }
 .fdcv-body p { margin: 0 0 .5em; }
 .fdcv-body img { max-width: 100%; max-height: 300px; height: auto; }
