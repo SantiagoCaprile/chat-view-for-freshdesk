@@ -640,8 +640,10 @@
     foot.appendChild(cp);
     const d = m.time ? new Date(m.time) : null;
     if (d && !isNaN(d)) {
-      const tm = el('span', 'fdcv-time', relTime(d));
-      tm.title = d.toLocaleString(T('locale'));
+      // El tooltip muestra siempre el otro formato.
+      const abs = st.dateFormat && st.dateFormat !== 'relative' && I18N.formatDate;
+      const tm = el('span', 'fdcv-time', abs ? I18N.formatDate(d, st.dateFormat, st.timeFormat) : relTime(d));
+      tm.title = abs ? relTime(d) : (I18N.formatFull ? I18N.formatFull(d, st.timeFormat) : d.toLocaleString(T('locale')));
       foot.appendChild(tm);
     }
     b.appendChild(foot);
@@ -1027,6 +1029,12 @@
         st.renderedSig = null; st.scrolledFor = null; st.atLatest = true;
         if (st.enabled && st.overlay) render(); // re-pinta en el orden nuevo y va a lo ultimo
       }
+      if (changes.fdcvDateFormat || changes.fdcvTimeFormat) {
+        if (changes.fdcvDateFormat) st.dateFormat = changes.fdcvDateFormat.newValue || 'relative';
+        if (changes.fdcvTimeFormat) st.timeFormat = changes.fdcvTimeFormat.newValue || 'auto';
+        st.renderedSig = null;
+        if (st.enabled && st.overlay) render(); // re-pinta las horas en el formato nuevo
+      }
       if (changes.fdcvNoAnimations) applyNoAnim(changes.fdcvNoAnimations.newValue);
       if (changes.fdcvHideButton) {
         st.hideButton = !!changes.fdcvHideButton.newValue;
@@ -1062,6 +1070,8 @@
     try { applyNoAnim((await chrome.storage.local.get('fdcvNoAnimations')).fdcvNoAnimations); } catch (e) { /* con animaciones */ }
     try { st.internalDomains = parseDomains((await chrome.storage.local.get('fdcvInternalDomains')).fdcvInternalDomains); } catch (e) { st.internalDomains = []; }
     try { st.newestFirst = !!(await chrome.storage.local.get('fdcvNewestFirst')).fdcvNewestFirst; } catch (e) { st.newestFirst = false; }
+    try { st.dateFormat = (await chrome.storage.local.get('fdcvDateFormat')).fdcvDateFormat || 'relative'; } catch (e) { st.dateFormat = 'relative'; }
+    try { st.timeFormat = (await chrome.storage.local.get('fdcvTimeFormat')).fdcvTimeFormat || 'auto'; } catch (e) { st.timeFormat = 'auto'; }
     try { st.hideButton = !!(await chrome.storage.local.get('fdcvHideButton')).fdcvHideButton; } catch (e) { st.hideButton = false; }
     let cur = null;
     const tick = () => {

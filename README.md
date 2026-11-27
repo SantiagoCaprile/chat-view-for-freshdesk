@@ -18,7 +18,7 @@ Extensión de Chrome (MV3) que agrega un modo "chat" a los tickets de Freshdesk 
 - En un ticket aparece el botón flotante **💬 Chat** (abajo a la derecha). Un click abre/cierra la vista; el estado se recuerda.
 - El chat reemplaza la lista de mensajes dentro de la página: el editor de **Responder** / **Nota** y los menús de Freshdesk siguen funcionando normal debajo/encima.
 - **Firmas: visibles / ocultas** (barra del chat): por defecto se ven; si las ocultás quedan plegadas en "· · ·". Se recuerda entre tickets.
-- **Popup de la extensión** (click en el ícono en la barra de Chrome): *Modo chat*, *Mostrar firmas* y *Botón 💬 en la página*. En **⚙ Ajustes**: *Más nuevos arriba* (invierte el chat; el botón para ir a lo último pasa a estar arriba y apunta ↑), *Quitar animaciones* (para equipos con pocos recursos), *Dominios internos* (ej. `miempresa.com`: esos mensajes van a la derecha aunque no sean agentes) e *Idioma* (Automático / Español / English). Los cambios se aplican en vivo.
+- **Popup de la extensión** (click en el ícono en la barra de Chrome): *Modo chat*, *Mostrar firmas* y *Botón 💬 en la página*. En **⚙ Ajustes**: *Más nuevos arriba* (invierte el chat; el botón para ir a lo último pasa a estar arriba y apunta ↑), *Formato de fecha* (relativa "hace 2 días" por defecto, o exacta: "26 ago, 15:30", "26/08/2026 15:30" o "2026-08-26 15:30"), *Formato de hora* (automático según idioma, 24 h o 12 h; aplica a las fechas exactas), *Quitar animaciones* (para equipos con pocos recursos), *Dominios internos* (ej. `miempresa.com`: esos mensajes van a la derecha aunque no sean agentes) e *Idioma* (Automático / Español / English). Los cambios se aplican en vivo.
 - **✕** o el botón 💬 cierran la vista. **Actualizar** vuelve a pedir los datos; si entra un mensaje nuevo (o respondés), se refresca solo.
 
 ## Limitaciones
@@ -45,6 +45,8 @@ Read-only chat view for Freshdesk tickets (any `*.freshdesk.com` helpdesk): olde
 - **Show signatures** – on by default; turn it off to collapse signatures behind "· · ·".
 - **Bubble on screen** – show/hide the floating 💬 button.
 - **⚙ Settings → Newest first** – reverse the chat: latest on top, oldest at the bottom (the jump button moves to the top and points ↑).
+- **⚙ Settings → Date format** – relative ("2 days ago", default) or exact: "Aug 26, 3:30 PM", "08/26/2026 3:30 PM" or "2026-08-26 15:30".
+- **⚙ Settings → Time format** – automatic (by language), 24-hour or 12-hour, for the exact date formats.
 - **⚙ Settings → Disable animations** – lighter on low-end computers (no fades, shimmer or smooth scrolling).
 - **⚙ Settings → Internal domains** – e.g. `mycompany.com`: messages from these domains go on the right even if the sender is not a Freshdesk agent.
 - **⚙ Settings → Language** – Automatic (browser language) / Español / English.

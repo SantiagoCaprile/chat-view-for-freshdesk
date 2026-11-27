@@ -43,7 +43,7 @@
   <button type="button" class="row row-nav" id="openSettings">
     <span class="txt">
       <strong>⚙ <span data-i18n="pSettings">Ajustes</span></strong>
-      <small data-i18n="pSettingsSub">Idioma, orden, dominios internos y animaciones</small>
+      <small data-i18n="pSettingsSub">Idioma, orden, fechas, dominios internos y animaciones</small>
     </span>
     <span class="chev" aria-hidden="true">›</span>
   </button>
@@ -60,6 +60,25 @@
     </span>
     <input type="checkbox" id="newest" role="switch">
     <span class="sw" aria-hidden="true"></span>
+  </label>
+
+  <label class="row row-select">
+    <span class="txt"><strong data-i18n="pDateFmt">Formato de fecha</strong></span>
+    <select id="datefmt">
+      <option value="relative" data-i18n="pDateRelative">Relativa (hace 2 días)</option>
+      <option value="text"></option>
+      <option value="slash"></option>
+      <option value="iso"></option>
+    </select>
+  </label>
+
+  <label class="row row-select">
+    <span class="txt"><strong data-i18n="pTimeFmt">Formato de hora</strong></span>
+    <select id="timefmt">
+      <option value="auto" data-i18n="pTimeAuto">Automático (según idioma)</option>
+      <option value="24" data-i18n="pTime24">24 horas (15:30)</option>
+      <option value="12" data-i18n="pTime12">12 horas (3:30 PM)</option>
+    </select>
   </label>
 
   <label class="row">

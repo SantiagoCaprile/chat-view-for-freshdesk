@@ -63,9 +63,15 @@
       pDomainsPh: 'ej: miempresa.com',
       pSaved: 'Guardado',
       pSettings: 'Ajustes',
-      pSettingsSub: 'Idioma, orden, dominios internos y animaciones',
+      pSettingsSub: 'Idioma, orden, fechas, dominios internos y animaciones',
       pNewest: 'Más nuevos arriba',
       pNewestSub: 'Invierte el chat: lo último arriba y lo más viejo abajo',
+      pDateFmt: 'Formato de fecha',
+      pDateRelative: 'Relativa (hace 2 días)',
+      pTimeFmt: 'Formato de hora',
+      pTimeAuto: 'Automático (según idioma)',
+      pTime24: '24 horas (15:30)',
+      pTime12: '12 horas (3:30 p. m.)',
       pBack: 'Volver',
       pNoAnim: 'Quitar animaciones',
       pNoAnimSub: 'Más liviano en equipos con pocos recursos: sin fundidos, brillos ni scroll suave',
@@ -134,9 +140,15 @@
       pDomainsPh: 'e.g. mycompany.com',
       pSaved: 'Saved',
       pSettings: 'Settings',
-      pSettingsSub: 'Language, order, internal domains and animations',
+      pSettingsSub: 'Language, order, dates, internal domains and animations',
       pNewest: 'Newest first',
       pNewestSub: 'Reverse the chat: latest on top, oldest at the bottom',
+      pDateFmt: 'Date format',
+      pDateRelative: 'Relative (2 days ago)',
+      pTimeFmt: 'Time format',
+      pTimeAuto: 'Automatic (by language)',
+      pTime24: '24-hour (15:30)',
+      pTime12: '12-hour (3:30 PM)',
       pBack: 'Back',
       pNoAnim: 'Disable animations',
       pNoAnimSub: 'Lighter on low-end computers: no fades, shimmer or smooth scrolling',
@@ -161,7 +173,39 @@
     return s;
   };
 
+  // Formatos de fecha absolutos (opcion "Formato de fecha"; 'relative' lo resuelve content.js).
+  //   text:  26 ago, 12:00 / Aug 26, 12:00 PM (con año si no es el actual)
+  //   slash: 26/08/2026 12:00 / 08/26/2026 12:00 PM (orden dia/mes segun idioma)
+  //   iso:   2026-08-26 12:00 (igual en todos los idiomas)
+  // Formato de hora (opcion "Formato de hora"): 'auto' (24 h en español, 12 h en inglés) | '24' | '12'.
+  const DATE_FORMATS = ['relative', 'text', 'slash', 'iso'];
+  const TIME_FORMATS = ['auto', '24', '12'];
+  const pad = n => String(n).padStart(2, '0');
+  const is12 = hourFmt => hourFmt === '12' || (hourFmt !== '24' && /^en/i.test(t('locale')));
+  // Hora armada a mano para que sea igual en todos los formatos: 15:30 | 3:30 p. m. | 3:30 PM.
+  const timeStr = (d, hourFmt) => {
+    const h = d.getHours(), m = pad(d.getMinutes());
+    if (!is12(hourFmt)) return `${pad(h)}:${m}`;
+    const es = /^es/i.test(t('locale'));
+    return `${h % 12 || 12}:${m} ` + (h < 12 ? (es ? 'a. m.' : 'AM') : (es ? 'p. m.' : 'PM'));
+  };
+  const formatDate = (d, fmt, hourFmt) => {
+    const loc = t('locale');
+    const time = timeStr(d, hourFmt);
+    if (fmt === 'iso') return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${time}`;
+    if (fmt === 'slash') return d.toLocaleDateString(loc, { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + time;
+    const o = { day: 'numeric', month: 'short' };
+    if (d.getFullYear() !== new Date().getFullYear()) o.year = 'numeric';
+    return d.toLocaleDateString(loc, o).replace(/\./g, '') + ', ' + time;
+  };
+  // Fecha y hora completas para el tooltip de la fecha relativa.
+  const formatFull = (d, hourFmt) => d.toLocaleDateString(t('locale'), { day: 'numeric', month: 'long', year: 'numeric' }) + ', ' + timeStr(d, hourFmt);
+
   globalThis.FDCV_I18N = {
+    DATE_FORMATS,
+    TIME_FORMATS,
+    formatDate,
+    formatFull,
     t,
     resolve,
     browserLang,

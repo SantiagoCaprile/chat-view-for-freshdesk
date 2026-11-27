@@ -2,6 +2,17 @@
 
 All notable changes to Chat View for Freshdesk. Versions match `manifest.json` and the Chrome Web Store package.
 
+## 1.8.0 — 2026-11-26
+
+### Added
+- **⚙ Settings → Date format**: choose how message times are shown instead of only relative times like "2 days ago":
+  - **Relative** (default): "2 days ago".
+  - **Text**: "Aug 26, 3:30 PM" / "26 ago, 15:30".
+  - **Slashes**: "08/26/2026 3:30 PM" / "26/08/2026 15:30" (day/month order follows the language).
+  - **Dashes**: "2026-08-26 15:30" (same in every language).
+- **⚙ Settings → Time format**: automatic (24-hour in Spanish, 12-hour in English), 24-hour or 12-hour. Applies to the exact date formats.
+- Hovering a time shows the other format (the relative time when an exact date is shown, and vice versa).
+
 ## 1.7.3 — 2026-11-25
 
 ### Fixed

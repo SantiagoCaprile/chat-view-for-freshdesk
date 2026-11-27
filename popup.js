@@ -4,8 +4,8 @@
   'use strict';
   const I18N = globalThis.FDCV_I18N;
   const $ = id => document.getElementById(id);
-  const enabled = $('enabled'), sigs = $('sigs'), button = $('button'), lang = $('lang'), domains = $('domains'), saved = $('saved'), noanim = $('noanim'), newest = $('newest');
-  // Dos pantallas: principal y ajustes (idioma, orden, dominios internos, animaciones).
+  const enabled = $('enabled'), sigs = $('sigs'), button = $('button'), lang = $('lang'), domains = $('domains'), saved = $('saved'), noanim = $('noanim'), newest = $('newest'), datefmt = $('datefmt'), timefmt = $('timefmt');
+  // Dos pantallas: principal y ajustes (idioma, orden, fechas, dominios internos, animaciones).
   const show = settings => {
     $('viewMain').hidden = settings; $('viewSettings').hidden = !settings;
     (settings ? $('closeSettings') : $('openSettings')).focus();
@@ -20,10 +20,13 @@
     document.querySelectorAll('[data-i18n-ph]').forEach(n => { n.placeholder = I18N.t(n.dataset.i18nPh); });
     const browser = I18N.browserLang() === 'es' ? I18N.t('langEs') : I18N.t('langEn');
     $('langAuto').textContent = I18N.t('pLangAuto', { lang: browser });
+    // Cada formato se muestra con un ejemplo en el idioma actual.
+    const sample = new Date(); sample.setMonth(7, 26); sample.setHours(15, 30, 0, 0);
+    datefmt.querySelectorAll('option:not([value="relative"])').forEach(o => { o.textContent = I18N.formatDate(sample, o.value, timefmt.value); });
   }
 
   let cur = {};
-  try { cur = await chrome.storage.local.get(['fdcvEnabled', 'fdcvShowSignatures', 'fdcvHideButton', 'fdcvLang', 'fdcvInternalDomains', 'fdcvNoAnimations', 'fdcvNewestFirst']); } catch (e) { /* ignore */ }
+  try { cur = await chrome.storage.local.get(['fdcvEnabled', 'fdcvShowSignatures', 'fdcvHideButton', 'fdcvLang', 'fdcvInternalDomains', 'fdcvNoAnimations', 'fdcvNewestFirst', 'fdcvDateFormat', 'fdcvTimeFormat']); } catch (e) { /* ignore */ }
   enabled.checked = !!cur.fdcvEnabled;
   sigs.checked = cur.fdcvShowSignatures !== false; // por defecto se muestran
   const warn = $('sigsWarn');
@@ -34,6 +37,10 @@
   domains.value = cur.fdcvInternalDomains || '';
   noanim.checked = !!cur.fdcvNoAnimations;
   newest.checked = !!cur.fdcvNewestFirst;
+  datefmt.value = I18N.DATE_FORMATS.includes(cur.fdcvDateFormat) ? cur.fdcvDateFormat : 'relative'; // por defecto, relativa
+  timefmt.value = I18N.TIME_FORMATS.includes(cur.fdcvTimeFormat) ? cur.fdcvTimeFormat : 'auto';
+  const paintTime = () => { timefmt.disabled = datefmt.value === 'relative'; }; // la hora solo aplica a fechas exactas
+  paintTime();
   I18N.setPref(lang.value);
   paint();
 
@@ -42,6 +49,8 @@
   sigs.addEventListener('change', () => { paintWarn(); save({ fdcvShowSignatures: sigs.checked }); });
   button.addEventListener('change', () => save({ fdcvHideButton: !button.checked }));
   newest.addEventListener('change', () => save({ fdcvNewestFirst: newest.checked }));
+  datefmt.addEventListener('change', () => { paintTime(); save({ fdcvDateFormat: datefmt.value }); });
+  timefmt.addEventListener('change', () => { paint(); save({ fdcvTimeFormat: timefmt.value }); });
   noanim.addEventListener('change', () => save({ fdcvNoAnimations: noanim.checked }));
   // Dominios: se guardan al dejar de tipear (o con Enter), normalizados.
   const normDomains = v => String(v || '').split(/[\s,;]+/)
